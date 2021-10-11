@@ -28,7 +28,7 @@ public class MethodRef {
 	public static void main(String ...strings) {
 		
 		x obj=MethodRef::hell;  //static method refernces
-		obj.show("Kill you Bala !");
+		obj.show("You Bala !");
 		y obj2=String::indexOf;  
 		System.out.println(obj2.show("HILLO","Heelo"));
 		int s=4_____8_____________________________0___________________1_____________________________________99;
