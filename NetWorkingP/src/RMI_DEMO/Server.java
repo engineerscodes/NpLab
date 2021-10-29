@@ -20,18 +20,24 @@ public class Server extends UnicastRemoteObject implements client  {
 		 super();
 	 }
 
-	@Override
-	public String print(String text) throws RemoteException {
-		
-		return "Frome Sever : "+text;
-	}
+	
 	
 	public static void main(String[] args) throws RemoteException, AlreadyBoundException {
     
-	   Registry reg=LocateRegistry.createRegistry(5099);
+	   Registry reg=LocateRegistry.createRegistry(5014);
+	   
+	   System.out.println("Server is waiting for Client");
 		
-       reg.bind("hello",new  Server());
+       reg.bind("add",new  Server());
 
+	}
+
+
+
+	@Override
+	public int add(int n1, int n2) throws RemoteException {
+		
+		return n1+n2;
 	}
 
 }

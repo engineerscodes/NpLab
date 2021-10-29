@@ -10,6 +10,6 @@ import java.rmi.*;
  */
 public interface client extends Remote{  
   
-	public String print(String text) throws RemoteException;
+	public int add(int n1,int n2) throws RemoteException;
 	
 }  
