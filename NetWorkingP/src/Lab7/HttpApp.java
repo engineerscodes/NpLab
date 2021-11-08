@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -106,10 +107,7 @@ public class HttpApp {
 				
 					output.setText(e1.toString());
 				}
-				
-				
-				
-				
+	
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -173,7 +171,46 @@ public class HttpApp {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				String text=output.getText();
+				if(text.length()==0)
+				{	output.setText("DELETE DATA CANNOT BE NULL");
+				    return ;
+				}
+				if(text.split("=").length<=1) {
+					output.setText("Min of One Form Data is Needed");
+				    return ;
+				}
+				try {
+				String payload=output.getText();
+				URL url=new URL(txtEnterUrl.getText());
+				HttpURLConnection con=(HttpURLConnection)(url.openConnection());
+				System.out.println("WEBSITE :"+url.toString());
+				con.setRequestMethod("DELETE");
+				System.out.println(con.getRequestMethod());
+				con.setDoOutput(true);
+				OutputStream os = con.getOutputStream();
+				os.write(payload.getBytes());
+				os.flush();
+				os.close();
+				if (con.getResponseCode() == HttpURLConnection.HTTP_OK) { 
+					BufferedReader in = new BufferedReader(new InputStreamReader(
+							con.getInputStream()));
+					String inputLine;
+					StringBuffer response = new StringBuffer();
+
+					while ((inputLine = in.readLine()) != null) {
+						response.append(inputLine);
+					}
+					in.close();
+					output.setText(response.toString());
+					
+				} else {
+					System.out.println("DELETE request not ALLOWED");
+				}
+				}catch(Exception e2) {
+					output.setText(e2.toString());
+				}
+				   
 				
 			}
 		});
@@ -182,21 +219,145 @@ public class HttpApp {
 		panel_1.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("HEAD\r\n");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					URL url=new URL(txtEnterUrl.getText());
+					System.out.println("WEBSITE :"+url.toString());
+					HttpURLConnection con = (HttpURLConnection)(url.openConnection());
+					con.setRequestMethod("HEAD");
+					System.out.println("METHOD :"+con.getRequestMethod());
+					System.out.println("STATUS CODE :"+con.getResponseCode());
+					output.setText("STATUS CODE :"+con.getResponseCode()+"\n"+"CONTENT TYPE :"+con.getContentType());
+					
+					if(!(con.getResponseCode()>=200 && con.getResponseCode()<400 ))
+						output.setText("STATUS CODE :"+con.getResponseCode()+"\nSITE IS DOWN !!!");
+					
+				} catch (Exception e1) {
+					
+					output.setText(e1.toString());
+				}
+				
+				
+				
+			}
+		});
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnNewButton_3.setBounds(443, 69, 112, 37);
 		panel_1.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("OPTIONS");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					URL url =new URL(txtEnterUrl.getText());
+					HttpURLConnection con=(HttpURLConnection)(url.openConnection());
+					con.setRequestMethod("OPTIONS");
+					System.out.println("WEBSITE :"+url.toString());
+					System.out.println("METHOD :"+con.getRequestMethod());
+					System.out.println("STATUS CODE :"+con.getResponseCode());
+					
+					output.setText("ALLOWED METHODS :"+con.getHeaderField("Allow"));
+					
+				} catch (Exception e1) {
+					
+				
+					output.setText(e1.toString());
+				}
+	
+			}
+				
+			
+		});
 		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton_4.setBounds(33, 129, 112, 37);
 		panel_1.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("PUT");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String text=output.getText();
+				if(text.length()==0)
+				{	output.setText("PUT DATA CANNOT BE NULL");
+				    return ;
+				}
+				if(text.split("=").length<=1) {
+					output.setText("Min of One Form Data is Needed");
+				    return ;
+				}
+				try {
+				String payload=output.getText();
+				URL url=new URL(txtEnterUrl.getText());
+				HttpURLConnection con=(HttpURLConnection)(url.openConnection());
+				System.out.println("WEBSITE :"+url.toString());
+				con.setRequestMethod("PUT");
+				System.out.println(con.getRequestMethod());
+				con.setDoOutput(true);
+				OutputStream os = con.getOutputStream();
+				os.write(payload.getBytes());
+				os.flush();
+				os.close();
+				if (con.getResponseCode() == HttpURLConnection.HTTP_OK) { //success
+					BufferedReader in = new BufferedReader(new InputStreamReader(
+							con.getInputStream()));
+					String inputLine;
+					StringBuffer response = new StringBuffer();
+
+					while ((inputLine = in.readLine()) != null) {
+						response.append(inputLine);
+					}
+					in.close();
+					output.setText(response.toString());
+					
+				} else {
+					System.out.println("POST request not ALLOWED");
+				}
+				
+				}catch(Exception e2) {
+					output.setText(e2.toString());
+				}
+				   
+				
+			}
+		});
 		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnNewButton_5.setBounds(171, 129, 112, 37);
 		panel_1.add(btnNewButton_5);
 		
 		JButton btnNewButton_6 = new JButton("TRACE");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					URL url =new URL(txtEnterUrl.getText());
+					HttpURLConnection con=(HttpURLConnection)(url.openConnection());
+					con.setRequestMethod("TRACE");
+					System.out.println("WEBSITE :"+url.toString());
+					System.out.println("METHOD :"+con.getRequestMethod());
+					System.out.println("STATUS CODE :"+con.getResponseCode());
+					
+					
+					StringBuilder sb=new StringBuilder();
+					sb.append("\t\tHTTP Response Header\n");
+					Map<String, List<String>> map = con.getHeaderFields();
+					for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+						sb.append(entry.getKey() +  " : " + entry.getValue()+"\n");
+					}
+					
+					output.setText(sb.toString());
+					
+				} catch (Exception e1) {
+					
+				
+					output.setText(e1.toString());
+				}
+	
+				
+			}
+		});
 		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnNewButton_6.setBounds(304, 129, 112, 37);
 		panel_1.add(btnNewButton_6);
