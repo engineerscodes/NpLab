@@ -16,7 +16,7 @@ public class Main {
 	    
 		InetAddress ip;
 		try {
-			ip = InetAddress.getByName("www.naveennaveen.me"); //185.199.110.153
+			ip = InetAddress.getByName("www.naveen.social"); //185.199.110.153
 			byte b[]=ip.getAddress();
 			System.out.println(ip+"   ");
 			//reverse loopkup
