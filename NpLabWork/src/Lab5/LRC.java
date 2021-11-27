@@ -1,19 +1,14 @@
 
 package Lab5;
 import java.util.*;
-
-import java.util.*;
-
+import java.io.IOException;
+import java.net.InetSocketAddress;
 
 
 /**
  *
  * @author 19BCN7185
  */
-
-
-
-import java.util.*;
 
 
 public class LRC {
@@ -49,6 +44,8 @@ doublyQueue.remove(page);
 }
 doublyQueue.push(page);
 hashSet.add(page);
+
+System.out.println(doublyQueue);
 }
 
 
@@ -63,22 +60,17 @@ System.out.print(itr.next() + " ");
 
 
 
-public static void main(String[] args) {
+public static void main(String[] args) throws IOException {
 LRC cache = new LRC(4);
 cache.add(1);
 cache.add(2);
 cache.add(3);
 cache.add(1);
 cache.add(4);
-System.out.println(cache.doublyQueue);
 cache.add(5);
-System.out.println(cache.doublyQueue);
-cache.add(2);
-cache.add(2);
-System.out.println(cache.doublyQueue);
-cache.add(1);
-System.out.println(cache.doublyQueue);
 System.out.println("---------------------------------------"+" CACHE "+"----------------------------------");
 cache.display();
+
+
 }
 }
