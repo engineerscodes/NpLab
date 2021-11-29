@@ -13,10 +13,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketImpl;
 import java.net.UnknownHostException;
+import java.nio.channels.SocketChannel;
 import java.util.Scanner;
 import javax.net.ssl.SSLSocketFactory;
 import Lab6.FileTranfer;
+import sun.security.util.SecurityConstants;
 
 public class ClientSSL {
 	   
@@ -46,3 +49,5 @@ public class ClientSSL {
 	
 	
 }
+
+ 
