@@ -20,7 +20,7 @@ public class Server {
 		
 		System.out.println("Server Started !!!!");
 
-		String group="226.44.5.1";
+		String group="224.0.0.1";
 		InetAddress in=InetAddress.getByName(group);
 		MulticastSocket ms=new MulticastSocket(5000);
 		

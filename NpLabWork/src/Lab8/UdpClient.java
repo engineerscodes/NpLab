@@ -9,7 +9,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-
+import java.util.*;
 /**
  * @author M.NAVEEN
  * RANDOM CODER'S
@@ -21,8 +21,12 @@ public class UdpClient {
 	 
 		DatagramSocket ds=new DatagramSocket();
 		
-		String msg="Hi bro";
+		Scanner nav=new Scanner(System.in);
 		InetAddress in=InetAddress.getLocalHost();
+		
+		while(true) {
+		System.out.println("Enter Message :");
+		String msg=nav.nextLine();
 		DatagramPacket dp=new DatagramPacket(msg.getBytes(),msg.getBytes().length,in,5000);
 		ds.send(dp);
 		System.out.println("Send text :"+msg);
@@ -30,7 +34,8 @@ public class UdpClient {
 		DatagramPacket dp2=new DatagramPacket(rev,rev.length);
         ds.receive(dp2);
         
-        System.out.println("Received text :"+new String(rev));
+        System.out.println("Received text :"+new String(rev).trim());
+		}
 	}
 
 }
