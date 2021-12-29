@@ -24,9 +24,9 @@ public class ServersSocketSSL {
 	public static void main(String ...strings) throws IOException, ClassNotFoundException {
 	 long start=System.nanoTime();
      Scanner nav=new Scanner(System.in);
-	 System.setProperty("javax.net.ssl.keyStore","C:\\Users\\HP\\myKeyStore.jks");
+	 System.setProperty("javax.net.ssl.keyStore","C:\\myKeyStore.jks");
        
-     System.setProperty("javax.net.ssl.keyStorePassword","123456");
+     System.setProperty("javax.net.ssl.keyStorePassword","123456789");
      
      SSLServerSocketFactory sslServerSocketfactory = (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
      
