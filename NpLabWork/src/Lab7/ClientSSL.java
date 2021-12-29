@@ -34,8 +34,6 @@ public class ClientSSL {
 		
 		System.out.println(Arrays.toString(sslSocketfactory.getSupportedCipherSuites()));
 		
-		
-		
 		Socket s=sslSocketfactory.createSocket("localhost",port );	
 		
         System.out.println("---".repeat(20)+" CONNECTED "+"---".repeat(20));

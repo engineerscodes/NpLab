@@ -2,7 +2,6 @@
  * 
  */
 package Lab7;
-
 /**
  * @author M.NAVEEN
  * RANDOM CODER'S
@@ -11,12 +10,12 @@ package Lab7;
 
 import java.util.*;
 import javax.net.ssl.SSLServerSocketFactory;
-import java.net.*;
+import java.net.*  ;
 import java.io.*;
 
 public class ThreadSSLServer {
 
-	public static int port=5000;
+	public static int port=5001;
 	
 	public static void main(String ...strings) throws IOException {
 		
@@ -38,10 +37,13 @@ public class ThreadSSLServer {
 		    ServerSocket ss=sslerver.createServerSocket(port);
 		    
 		    System.out.println("------------------- SERVER ----------------------------------------");
-		    
-		    Socket s=ss.accept();
+		    Socket s=null;
+		    while(true)
+		    { 
+		    s=ss.accept();
 		    
 		    new ThreadServer(s).start();
+		    }
 		    
 	}
 	
@@ -75,6 +77,12 @@ class ThreadServer extends Thread
 			e.printStackTrace();
 		}
 		
+		try {
+			socket.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 	}
 	
 	
